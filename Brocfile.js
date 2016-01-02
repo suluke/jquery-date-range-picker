@@ -2,18 +2,20 @@
 const Funnel = require('broccoli-funnel');
 const MergeTrees = require('broccoli-merge-trees');
 const Sass = require('broccoli-sass');
-const Browserify = require('broccoli-browserify');
+const Browserify = require('broccolify');
 const UglifyJS = require('broccoli-uglify-sourcemap');
+const TranspileJs = require('broccoli-babel-transpiler');
 
 const css = new Sass(['sass'], 'styles.scss', 'daterangepicker.css');
-const js = Browserify('lib', {
+let js = Browserify('lib', {
 	entries: ['./main.js'],
 	outputFile: 'jquery.daterangepicker.js',
+	ignore: ['jquery', 'moment'],
 	bundle: {
-		external: ['jquery', 'moment']
 		//standalone: 'daterangepicker'
 	}
 });
+js = TranspileJs(js);
 // copy jquery.daterangepicker.js to put it through uglify
 let minJs = Funnel(js, {
 	include: ['*'],
