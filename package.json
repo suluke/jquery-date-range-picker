@@ -1,0 +1,35 @@
+{
+  "name": "jquery-date-range-picker",
+  "version": "1.0.0",
+  "description": "v0.0.8",
+  "main": "jquery.daterangepicker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/suluke/jquery-date-range-picker.git"
+  },
+  "author": "mindscreen GmbH",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/suluke/jquery-date-range-picker/issues"
+  },
+  "homepage": "https://github.com/suluke/jquery-date-range-picker#readme",
+  "devDependencies": {
+    "broccoli": "^0.16.9",
+    "broccoli-browserify": "^0.1.0",
+    "broccoli-concat": "^2.0.4",
+    "broccoli-funnel": "^1.0.1",
+    "broccoli-merge-trees": "^1.1.1",
+    "broccoli-replicate": "0.0.5",
+    "broccoli-sass": "^0.7.0",
+    "broccoli-uglify-sourcemap": "^1.1.0",
+    "grunt": "^0.4.5",
+    "grunt-broccoli": "^0.4.1",
+    "grunt-contrib-jshint": "^0.11.3",
+    "grunt-contrib-watch": "^0.6.1",
+    "jquery": "^2.1.4",
+    "moment": "^2.10.6"
+  }
+}
