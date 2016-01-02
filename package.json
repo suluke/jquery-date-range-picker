@@ -23,7 +23,7 @@
     "broccoli-merge-trees": "^1.1.1",
     "broccoli-sass": "^0.7.0",
     "broccoli-uglify-sourcemap": "^1.1.0",
-    "broccolify": "git+https://github.com/murphym18/broccoli-browserify.git",
+    "broccolify": "^0.1.5",
     "grunt": "^0.4.5",
     "grunt-broccoli": "^0.4.1",
     "grunt-contrib-jshint": "^0.11.3",
