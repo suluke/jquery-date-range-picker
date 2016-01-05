@@ -31,7 +31,7 @@ module.exports = function(grunt) {
 		watch: {
 			scripts: {
 				files: ['lib/**/*.js', 'sass/**/*.scss'],
-				tasks: ['jshint', 'jscs', 'broccoli:dev:build']
+				tasks: ['jshint', /*'jscs',*/ 'broccoli:dev:build']
 			}
 		}
 	});

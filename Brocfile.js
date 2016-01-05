@@ -26,7 +26,6 @@ const ignoredLocales = [
 ];
 for (let i = 0; i < ignoredLocales.length; ++i) {
 	ignoredLocales[i] = './lib/locales/' + ignoredLocales[i] + '.js';
-	console.log(ignoredLocales[i]);
 }
 
 const css = new Sass(['sass'], 'styles.scss', 'daterangepicker.css');
