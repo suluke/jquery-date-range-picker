@@ -9,7 +9,7 @@ const TranspileJs = require('broccoli-babel-transpiler');
 
 // Uncomment locales from this list which you do not want to include in
 // your build
-const ignoredLocales = [
+const disabledLocales = [
 	//'az',
 	//'cn',
 	//'cz',
@@ -24,15 +24,28 @@ const ignoredLocales = [
 	//'pl',
 	//'ru'
 ];
-for (let i = 0; i < ignoredLocales.length; ++i) {
-	ignoredLocales[i] = './lib/locales/' + ignoredLocales[i] + '.js';
+// Uncomment features to be disabled in your custom build
+const disabledFeatures = [
+	//'daytime-selection-controls'
+];
+
+
+
+for (let i = 0; i < disabledLocales.length; ++i) {
+	disabledLocales[i] = './lib/locales/' + disabledLocales[i] + '.js';
+}
+const featureModuleMap = {
+	'daytime-selection-controls': './lib/daytime-range.js'
+}
+for (let i = 0; i < disabledFeatures.length; ++i) {
+	disabledFeatures[i] = featureModuleMap[disabledFeatures[i]];
 }
 
 const css = new Sass(['sass'], 'styles.scss', 'daterangepicker.css');
 let js = Browserify('lib', {
 	entries: ['./main.js'],
 	outputFile: 'jquery.daterangepicker.js',
-	ignore: ['jquery', 'moment'].concat(ignoredLocales),
+	ignore: ['jquery', 'moment'].concat(disabledLocales).concat(disabledFeatures),
 	bundle: {
 		//standalone: 'daterangepicker'
 	}
