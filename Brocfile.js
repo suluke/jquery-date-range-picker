@@ -6,11 +6,34 @@ const Browserify = require('broccolify');
 const UglifyJS = require('broccoli-uglify-sourcemap');
 const TranspileJs = require('broccoli-babel-transpiler');
 
+
+// Uncomment locales from this list which you do not want to include in
+// your build
+const ignoredLocales = [
+	//'az',
+	//'cn',
+	//'cz',
+	//'de',
+	//'en',
+	//'es',
+	//'fr',
+	//'hu',
+	//'it',
+	//'no',
+	//'nl',
+	//'pl',
+	//'ru'
+];
+for (let i = 0; i < ignoredLocales.length; ++i) {
+	ignoredLocales[i] = './lib/locales/' + ignoredLocales[i] + '.js';
+	console.log(ignoredLocales[i]);
+}
+
 const css = new Sass(['sass'], 'styles.scss', 'daterangepicker.css');
 let js = Browserify('lib', {
 	entries: ['./main.js'],
 	outputFile: 'jquery.daterangepicker.js',
-	ignore: ['jquery', 'moment'],
+	ignore: ['jquery', 'moment'].concat(ignoredLocales),
 	bundle: {
 		//standalone: 'daterangepicker'
 	}
