@@ -201,6 +201,9 @@
 	}
 	.selected-days {
 		display: none;
+		.selected-days-num:after {
+			content: " ";
+		}
 	}
 	.drp_top-bar {
 		line-height: 1.4;
