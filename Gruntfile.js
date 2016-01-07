@@ -41,6 +41,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-broccoli');
 
-	grunt.registerTask('default', ['broccoli:production:build']);
+	grunt.registerTask('default', ['jshint', 'jscs', 'broccoli:dist:build']);
 
 };
