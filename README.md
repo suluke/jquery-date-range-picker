@@ -45,5 +45,15 @@ The following tasks are currently available:
 ## Demo
 For a demo page, just open `demo/index.html` in your browser
 
+## Similar projects
+* [bootstrap-datepicker](https://github.com/eternicode/bootstrap-datepicker) also has a `range` option
+* [bootstrap-daterangepicker](https://github.com/dangrossman/bootstrap-daterangepicker) is a project with pretty much the same featureset and similar behavior as this plugin
+* [jquery-ui-daterangepicker](https://github.com/tamble/jquery-ui-daterangepicker): a daterange picker plugin for jquey-ui
+* [jquery.dateRangePicker](https://github.com/elohr/jquery.dateRangePicker) has a completely different concept for the ui which may work better for touch-devices
+* [yui's calendar widget](http://yuilibrary.com/yui/docs/calendar/calendar-multipane.html) supports basic date range selects (using shift key)
+* [daterange picker on flights.google.com](https://www.google.de/flights/): Although not open source, it may serve as a good inspiration for what is considered *good usability*.
+
+There is also [this question on stackoverflow](https://stackoverflow.com/questions/1971208/looking-for-a-good-date-range-picker-any-suggestions), although it was closed as 'not constructive'.
+
 ## License
 This date range picker plugin is under MIT LICENSE
