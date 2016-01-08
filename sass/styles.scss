@@ -131,6 +131,11 @@
 				
 			}
 		}
+		&:after {
+			content: "";
+			display: block;
+			clear: both;
+		}
 	}
 	
 	.gap {
