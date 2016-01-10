@@ -35,7 +35,7 @@ for (let i = 0; i < disabledLocales.length; ++i) {
 	disabledLocales[i] = './lib/locales/' + disabledLocales[i] + '.js';
 }
 const featureModuleMap = {
-	'daytime-selection-controls': './lib/daytime-range.js'
+	'daytime-selection-controls': './lib/daytime-selection.js'
 }
 for (let i = 0; i < disabledFeatures.length; ++i) {
 	disabledFeatures[i] = featureModuleMap[disabledFeatures[i]];
