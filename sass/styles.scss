@@ -144,7 +144,12 @@
 						color: white;
 					}
 				}
-				
+				.prev:before {
+					content: '<';
+				}
+				.next:before {
+					content: '>';
+				}
 			}
 		}
 		&:after {
