@@ -96,6 +96,13 @@
 				padding: 0px;
 			}
 			.day {
+				/* This is to remove button's browser default css */
+				background: initial;
+				border: none;
+				width: 100%;
+				display: table-cell;
+				vertical-align: middle;
+				
 				padding: 5px 0;
 				line-height: 1;
 				font-size: 12px;
@@ -128,7 +135,7 @@
 					}
 				}
 			}
-			.day, .week-name {
+			.week-name {
 				height: 20px;
 				line-height: 20px;
 				font-weight: 100;
@@ -137,6 +144,8 @@
 			.caption {
 				height: 40px;
 				.next, .prev {
+					background: initial;
+					border: none;
 					padding: 0 5px;
 					cursor: pointer;
 					&:hover {
