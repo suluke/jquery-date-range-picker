@@ -26,8 +26,9 @@ const disabledLocales = [
 ];
 // Uncomment features to be disabled in your custom build
 const disabledFeatures = [
-	//'daytime-selection-controls',
-	//'shortcuts'
+	//'daytime-selection-controls'  // 2.4kb
+	//'shortcuts'                   // 3kb
+	//'week-numbers'                // 1.7kb
 ];
 
 
@@ -37,7 +38,8 @@ for (let i = 0; i < disabledLocales.length; ++i) {
 }
 const featureModuleMap = {
 	'daytime-selection-controls': './lib/daytime-selection.js',
-	'shortcuts': './lib/shortcuts.js'
+	'shortcuts': './lib/shortcuts.js',
+	'week-numbers': './lib/week-numbers.js'
 }
 for (let i = 0; i < disabledFeatures.length; ++i) {
 	disabledFeatures[i] = featureModuleMap[disabledFeatures[i]];
