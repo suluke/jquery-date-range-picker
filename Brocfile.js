@@ -26,8 +26,8 @@ const disabledLocales = [
 ];
 // Uncomment features to be disabled in your custom build
 const disabledFeatures = [
-	//'daytime-selection-controls'  // 2.4kb
-	//'shortcuts'                   // 3kb
+	//'daytime-selection-controls', // 2.4kb
+	//'shortcuts',                  // 3kb
 	//'week-numbers'                // 1.7kb
 ];
 
