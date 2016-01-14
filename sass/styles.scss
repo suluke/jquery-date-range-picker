@@ -110,7 +110,7 @@
 				color: #ccc;
 				cursor: default;
 				
-				&.lastMonth, &.nextMonth {
+				&.last-month, &.next-month {
 					color: #999;
 					cursor: default;
 					display: none;
@@ -121,11 +121,11 @@
 				&.has-tooltip {
 					cursor: help !important;
 				}
-				&.toMonth.valid {
+				&.this-month.valid {
 					color: #333;
 					cursor: pointer;
 				}
-				&.toMonth.hovering {
+				&.this-month.hovering {
 					background-color: #cdecfa;
 				}
 				&.real-today {
