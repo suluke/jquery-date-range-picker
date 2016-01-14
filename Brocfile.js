@@ -28,7 +28,8 @@ const disabledLocales = [
 const disabledFeatures = [
 	//'daytime-selection-controls', // 2.4kb
 	//'shortcuts',                  // 3kb
-	//'week-numbers'                // 1.7kb
+	//'week-numbers',               // 1.7kb
+	//'days-tooltip'                // 1.9kb
 ];
 
 
@@ -39,7 +40,8 @@ for (let i = 0; i < disabledLocales.length; ++i) {
 const featureModuleMap = {
 	'daytime-selection-controls': './lib/daytime-selection.js',
 	'shortcuts': './lib/shortcuts.js',
-	'week-numbers': './lib/week-numbers.js'
+	'week-numbers': './lib/week-numbers.js',
+	'days-tooltip': './lib/day-tooltip.js'
 }
 for (let i = 0; i < disabledFeatures.length; ++i) {
 	disabledFeatures[i] = featureModuleMap[disabledFeatures[i]];
