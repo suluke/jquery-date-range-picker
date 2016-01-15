@@ -233,15 +233,17 @@
 					<pre class="options">
 {
 	separator : ' to ',
-	getValue: function() {
-		if ($('#date-range200').val() && $('#date-range201').val() )
-			return $('#date-range200').val() + ' to ' + $('#date-range201').val();
-		else
-			return '';
-	},
-	setValue: function(s,s1,s2) {
-		$('#date-range200').val(s1);
-		$('#date-range201').val(s2);
+	functions: {
+		getValue: function() {
+			if ($('#date-range200').val() && $('#date-range201').val() )
+				return $('#date-range200').val() + ' to ' + $('#date-range201').val();
+			else
+				return '';
+		},
+		setValue: function(s,s1,s2) {
+			$('#date-range200').val(s1);
+			$('#date-range201').val(s2);
+		}
 	}
 }</pre>
 				</div>
@@ -266,8 +268,8 @@
 				<div class="config">
 					<pre class="options">
 {
-	shortcuts : 
-	{
+	showShortcuts: true,
+	shortcuts: {
 		'next-days': [3,5,7],
 		'next': ['week','month','year']
 	}
@@ -282,8 +284,8 @@
 				<div class="config">
 					<pre class="options">
 {
-	shortcuts : 
-	{
+	showShortcuts: true,
+	shortcuts: {
 		'prev-days': [3,5,7],
 		'prev': ['week','month','year'],
 		'next-days':null,
@@ -300,6 +302,7 @@
 				<div class="config">
 					<pre class="options">
 {
+	showShortcuts: true,
 	shortcuts : null,
 	startOfWeek: 'sunday',
 	language:'en',
@@ -691,6 +694,18 @@ $('#date-range16-destroy').click(function(evt) {
 		var _tooltip = valid ? '' : 'sold out';
 		return [valid,_class,_tooltip];
 	}
+}</pre>
+				</div>
+			</div>
+			
+			<div class="demo">
+				Prevent double clicks: 
+				<input class="source" size="60" value="">
+				<a href="#" class="show-option">Show Config</a>
+				<div class="config">
+					<pre class="options">
+{
+	preventDoubleClicks: true
 }</pre>
 				</div>
 			</div>
