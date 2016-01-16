@@ -1,4 +1,6 @@
 {
+	"undef": true,
+	"unused": true,
 	"esnext": true,
 	"browser" : true,
 	"devel": true,
