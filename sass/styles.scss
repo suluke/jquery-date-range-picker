@@ -404,6 +404,25 @@
 		}
 	}
 	
+	&.draggable-range-bounds {
+		/* Add many selectors to be able to override cursor style from above */
+		.month-wrapper table .day.this-month.valid {
+			&.first-date-selected, &.last-date-selected {
+				cursor: move;
+				cursor: grab;
+				cursor: -webkit-grab;
+				cursor: -moz-grab;
+			}
+		}
+		.month-wrapper.dragging-date-range-delim {
+			&, .day {
+				cursor: grabbing !important;
+				cursor: -webkit-grabbing !important;
+				cursor: -moz-grabbing !important;
+			}
+		}
+	}
+	
 	.hide {
 		display: none;
 	}
