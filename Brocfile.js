@@ -38,7 +38,7 @@ for (let i = 0; i < disabledLocales.length; ++i) {
 	disabledLocales[i] = './lib/locales/' + disabledLocales[i] + '.js';
 }
 const featureModuleMap = {
-	'daytime-selection-controls': './lib/daytime-selection.js',
+	'daytime-selection-controls': './lib/plugins/daytime-selection.js',
 	'shortcuts': './lib/shortcuts.js',
 	'week-numbers': './lib/week-numbers.js',
 	'days-tooltip': './lib/day-tooltip.js'
