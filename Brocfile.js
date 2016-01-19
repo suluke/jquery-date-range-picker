@@ -22,7 +22,8 @@ const disabledLocales = [
 	//'no',
 	//'nl',
 	//'pl',
-	//'ru'
+	//'ru',
+	//'se'
 ];
 // Uncomment features to be disabled in your custom build
 const disabledFeatures = [
