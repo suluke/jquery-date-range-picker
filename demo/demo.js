@@ -39,7 +39,7 @@ $(function() {
 		'default-more' : 'Please select a date range longer than %d days',
 		'default-less' : 'Please select a date range less than %d days',
 		'default-range' : 'Please select a date range between %d and %d days',
-		'default-default': 'This is costom language'
+		'default-default': 'This is a custom language'
 	};
 	
 	$('.demo').each(function() {

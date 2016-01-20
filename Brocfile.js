@@ -30,7 +30,7 @@ const disabledFeatures = [
 	//'daytime-selection-controls', // 2.4kb
 	//'shortcuts',                  // 3kb
 	//'week-numbers',               // 1.7kb
-	//'days-tooltip',                // 1.9kb
+	//'days-tooltip',               // 1.9kb
 	//'jquery-plugin'
 ];
 

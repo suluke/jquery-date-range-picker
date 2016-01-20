@@ -172,19 +172,6 @@
 			</div>
 
 			<div class="demo">
-				Select a date range between 3 days and 7 days: 
-				<input id="date-range7" class="source" size="40" value="">
-				<a href="#" class="show-option">Show Config</a>
-				<div class="config">
-					<pre class="options">
-{
-	minDays: 3,
-	maxDays: 7
-}</pre>
-				</div>
-			</div>
-
-			<div class="demo">
 				Set start of week to Monday: 
 				<input id="date-range8" class="source" size="40" value="">
 				<a href="#" class="show-option">Show Config</a>
@@ -522,7 +509,9 @@ $('#date-range16-destroy').click(function(evt) {
 				<div class="config">
 					<pre class="options">
 {
-	customTopBar: 'Foo Bar'
+	topBar: {
+		customText: 'Foo Bar'
+	}
 }</pre>
 				</div>
 			</div>
@@ -549,7 +538,9 @@ $('#date-range16-destroy').click(function(evt) {
 				<div class="config">
 					<pre class="options">
 {
-	showTooltip: false
+	tooltip: {
+		enabled: false
+	}
 }</pre>
 				</div>
 			</div>
@@ -561,11 +552,10 @@ $('#date-range16-destroy').click(function(evt) {
 				<div class="config">
 					<pre class="options">
 {
-	functions: {
-		hoveringTooltip: function(days)
-		{
-			var D = ['One','Two', 'Three','Four','Five'];
-			return D[days] ? D[days] : days;
+	tooltip: {
+		getText: function(days) {
+			var D = ['','<span style="white-space:nowrap;">Please select another date</span>','Two', 'Three','Four','Five'];
+			return D[days] ? D[days] : days+' days';
 		}
 	}
 }</pre>
@@ -598,7 +588,9 @@ $('#date-range16-destroy').click(function(evt) {
 {
 	singleMonth: true,
 	showShortcuts: false,
-	showTopbar: false
+	topBar: {
+		enabled: false
+	}
 }</pre>
 				</div>
 			</div>
@@ -610,7 +602,9 @@ $('#date-range16-destroy').click(function(evt) {
 				<div class="config">
 					<pre class="options">
 {
-	showWeekNumbers: true
+	weekNumbers: {
+		enabled: true
+	}
 }</pre>
 				</div>
 			</div>
@@ -622,7 +616,9 @@ $('#date-range16-destroy').click(function(evt) {
 				<div class="config">
 					<pre class="options">
 {
-	showWeekNumbers: true,
+	weekNumbers: {
+		enabled: true
+	},
 	startOfWeek: 'monday'
 }</pre>
 				</div>
@@ -635,11 +631,13 @@ $('#date-range16-destroy').click(function(evt) {
 				<div class="config">
 					<pre class="options">
 {
-	showWeekNumbers: true,
-	getWeekNumber: function(day) {
-		var fiscalYearStart = moment('2015-08-16','YYYY-MM-DD');
-		var daysOffset = parseInt(fiscalYearStart.format('DDD'),10);
-		return moment(day).add( -1*daysOffset, 'days').format('W');
+	weekNumbers: {
+		enabled: true,
+		getWeekName: function(day) {
+			var fiscalYearStart = moment('2015-08-16', 'YYYY-MM-DD');
+			var daysOffset = parseInt(fiscalYearStart.format('DDD'), 10);
+			return moment(day).add( -1 * daysOffset, 'days').format('W');
+		}
 	}
 }</pre>
 				</div>
@@ -728,6 +726,7 @@ $('#date-range16-destroy').click(function(evt) {
 					<pre class="options">
 {
 	draggableRangeBounds: true,
+	format: 'DD.MM.YYYY HH:mm',
 	time: {
 		enabled: true
 	}
@@ -791,10 +790,19 @@ $('#date-range16-destroy').click(function(evt) {
 	selectBackward: false,
 	applyBtnClass: '',
 	singleMonth: 'auto',
-	showTopbar: true,
-	showTooltip: true,
+	topBar: {
+		enabled: true,
+		customText: false
+	},
+	tooltip: {
+		enabled: true,
+		getText: (days, startTime, hoveringTime, lang) => { ... }
+	},
 	swapTime: false,
-	showWeekNumbers: false,
+	weekNumbers: {
+		enabled: false,
+		getWeekName: date => {...}
+	},
 	defaultTime: new Date(),
 	openListeners: [{ target: 'self', event: 'click' }],
 	closeListeners: [{ target: document, event: 'click' }],
@@ -832,6 +840,9 @@ $('#date-range16-destroy').click(function(evt) {
 
 <b>startOfWeek (String)</b>
 	<i>"sunday" or "monday"</i>
+	
+<b>extraClass (String)</b>
+	<i>An additional class for the date range picker box</i>
 
 <b>getValue (Function)</b>
 	<i>This function is called when get date range string from DOM
@@ -906,13 +917,10 @@ $('#date-range16-destroy').click(function(evt) {
 	<i>This is a callback function when creating each date element in the calendar. First paramter will
 	be the timestamp of that day. Second parameter will be the date of that month.</i>
 
-<b>customTopBar ( Function || String)</b>
-	<i>If you set this parameter, it will use this value in the top bar.</i>
-
 <b>extraClass (String)</b>
 	<i>Set extra class name to the date range picker dom.</i>
 
-<b>showTopbar (Boolean)</b>
+<b>topBar (Object, default: {enabled: true, customText: false})</b>
 	<i>If show the top bar.</i>
 
 <b>swapTime (Boolean)</b>
@@ -924,8 +932,8 @@ $('#date-range16-destroy').click(function(evt) {
 <b>selectBackward (Boolean) Default: false</b>
 	<i>If this is true, you can only select second date before the first selected date.</i>
 
-<b>showWeekNumbers (Boolean) Default: false</b>
-	<i>If this is true, it will show week number of the year in the calendar.</i>
+<b>weekNumbers (Object) Default: { enabled: false, getWeekName: date => { ... } }</b>
+	<i>If <kbd>enabled</kbd> is true, it will show week number of the year in the calendar.</i>
 
 <b>getWeekNumber (Function( Date object ) )</b>
 	<i>the function called to generate the week number. the first parameter will be the first day of a week</i>
@@ -936,7 +944,7 @@ $('#date-range16-destroy').click(function(evt) {
 	<p>events will be triggerred on the date range picker DOM</p>
 <pre>$('#dom-id')
 .dateRangePicker()
-.bind('datepicker-first-date-selected', function(event, obj)
+.on('datepicker-first-date-selected', function(event, obj)
 {
 	/* This event will be triggered when first date is selected */
 	console.log(obj);
@@ -945,7 +953,7 @@ $('#date-range16-destroy').click(function(evt) {
 	// 		date1: (Date object of the earlier date)
 	// }
 })
-.bind('datepicker-change',function(event,obj)
+.on('datepicker-change',function(event,obj)
 {
 	/* This event will be triggered when second date is selected */
 	console.log(obj);
@@ -956,27 +964,27 @@ $('#date-range16-destroy').click(function(evt) {
 	//	 	value: "2013-06-05 to 2013-06-07"
 	// }
 })
-.bind('datepicker-apply',function(event,obj)
+.on('datepicker-apply',function(event,obj)
 {
 	/* This event will be triggered when user clicks on the apply button */
 	console.log(obj);
 })
-.bind('datepicker-close',function()
+.on('datepicker-close',function()
 {
 	/* This event will be triggered before date range picker close animation */
 	console.log('before close');
 })
-.bind('datepicker-closed',function()
+.on('datepicker-closed',function()
 {
 	/* This event will be triggered after date range picker close animation */
 	console.log('after close');
 })
-.bind('datepicker-open',function()
+.on('datepicker-open',function()
 {
 	/* This event will be triggered before date range picker open animation */
 	console.log('before open');
 })
-.bind('datepicker-opened',function()
+.on('datepicker-opened',function()
 {
 	/* This event will be triggered after date range picker open animation */
 	console.log('after open');
