@@ -31,17 +31,17 @@
 				jQuery Date Range Picker is a jQuery plugin that allows user to select a date range. 
 			</p>
 			<p>
-				Requires <a href="http://jquery.com/" target=_blank>jQuery</a> 1.3.2+ (MIT LICENSE), <a href="http://momentjs.com/" target=_blank>Moment</a> 2.2.0+ (MIT LICENSE)
+				Requires <a href="http://jquery.com/" target=_blank>jQuery</a> 1.3.2+, <a href="http://momentjs.com/" target=_blank>Moment</a> 2.8+
 			</p>
 			<p>
 				Supports IE8+, Firefox, Chrome, Safari and other standard HTML5 browsers.
 			</p>
 			<p>
-				Supports multi-language, you can choose a defined language or set it to auto-detect mode. <br>
-				You can also define new languages for it.
+				Supports multi-language: You can choose a defined language or set it to auto-detect mode. <br>
+				You can also define new languages yourself.
 			</p>
 			<p>
-				The HTML DOMs generated is fully CSS styled, you can change the skin by editting the SASS file easily.
+				The generated markup is fully CSS styled. You can customize the skin by simply editing the SASS file.
 			<p>
 			
 			<p>Fork me on Github <a href="https://github.com/suluke/jquery-date-range-picker">https://github.com/suluke/jquery-date-range-picker</a></p>
@@ -326,20 +326,22 @@
 					<pre class="options">
 {
 	language:'en',
-	customValueLabel: 'Dynamic Ranges',
-	showCustomValues: true,
-	customValues:
-		//if return an array of two dates, it will select the date range between the two dates
-		[
-			{
-				name: 'MTD',
-				value: 'Month To Date'
-			},
-			{
-				name: 'YTD',
-				value: 'Year To Date'
-			}
-		]
+	customValues: {
+		label: 'Dynamic Ranges',
+		enabled: true,
+		values:
+			//if return an array of two dates, it will select the date range between the two dates
+			[
+				{
+					name: 'MTD',
+					value: 'Month To Date'
+				},
+				{
+					name: 'YTD',
+					value: 'Year To Date'
+				}
+			]
+	}
 }</pre>
 				</div>
 			</div>
