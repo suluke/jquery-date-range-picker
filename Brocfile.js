@@ -26,10 +26,12 @@ const disabledLocales = [
 ];
 // Uncomment features to be disabled in your custom build
 const disabledFeatures = [
+	//'all',
 	//'daytime-selection-controls', // 2.4kb
 	//'shortcuts',                  // 3kb
 	//'week-numbers',               // 1.7kb
-	//'days-tooltip'                // 1.9kb
+	//'days-tooltip',                // 1.9kb
+	//'jquery-plugin'
 ];
 
 
@@ -38,10 +40,12 @@ for (let i = 0; i < disabledLocales.length; ++i) {
 	disabledLocales[i] = './lib/locales/' + disabledLocales[i] + '.js';
 }
 const featureModuleMap = {
+	'all': './lib/plugins.js',
 	'daytime-selection-controls': './lib/plugins/daytime-selection.js',
-	'shortcuts': './lib/shortcuts.js',
-	'week-numbers': './lib/week-numbers.js',
-	'days-tooltip': './lib/day-tooltip.js'
+	'shortcuts': './lib/plugins/shortcuts.js',
+	'week-numbers': './lib/plugins/week-numbers.js',
+	'days-tooltip': './lib/day-tooltip.js',
+	'jquery-plugin': './lib/plugins/jquery-plugin.js'
 }
 for (let i = 0; i < disabledFeatures.length; ++i) {
 	disabledFeatures[i] = featureModuleMap[disabledFeatures[i]];
