@@ -6,72 +6,103 @@ const Browserify = require('broccolify');
 const UglifyJS = require('broccoli-uglify-sourcemap');
 const TranspileJs = require('broccoli-babel-transpiler');
 
-
-// Uncomment locales from this list which you do not want to include in
-// your build
-const disabledLocales = [
-	//'az',
-	//'cn',
-	//'cz',
-	//'de',
-	//'en',
-	//'es',
-	//'fr',
-	//'hu',
-	//'it',
-	//'no',
-	//'nl',
-	//'pl',
-	//'ru',
-	//'se'
-];
-// Uncomment features to be disabled in your custom build
-const disabledFeatures = [
-	//'all',
-	//'daytime-selection-controls', // 2.4kb
-	//'shortcuts',                  // 3kb
-	//'week-numbers',               // 1.7kb
-	//'days-tooltip',               // 1.9kb
-	//'jquery-plugin'
-];
-
-
-
-for (let i = 0; i < disabledLocales.length; ++i) {
-	disabledLocales[i] = './lib/locales/' + disabledLocales[i] + '.js';
-}
-const featureModuleMap = {
-	'all': './lib/plugins.js',
-	'daytime-selection-controls': './lib/plugins/daytime-selection.js',
-	'shortcuts': './lib/plugins/shortcuts.js',
-	'week-numbers': './lib/plugins/week-numbers.js',
-	'days-tooltip': './lib/day-tooltip.js',
-	'jquery-plugin': './lib/plugins/jquery-plugin.js'
-}
-for (let i = 0; i < disabledFeatures.length; ++i) {
-	disabledFeatures[i] = featureModuleMap[disabledFeatures[i]];
+const buildConfig = {
+	// Uncomment locales from this list which you do not want to include in
+	// your build
+	disabledLocales: [
+		//'az',
+		//'cn',
+		//'cz',
+		//'de',
+		//'en',
+		//'es',
+		//'fr',
+		//'hu',
+		//'it',
+		//'no',
+		//'nl',
+		//'pl',
+		//'ru',
+		//'se'
+	],
+	// Uncomment features to be disabled in your custom build
+	disabledFeatures: [
+		//'all',
+		//'daytime-selection-controls', // 2.4kb
+		//'shortcuts',                  // 3kb
+		//'week-numbers',               // 1.7kb
+		//'days-tooltip',               // 1.9kb
+		//'jquery-plugin'
+	]
 }
 
-const css = new Sass(['sass'], 'styles.scss', 'daterangepicker.css');
-let js = Browserify('lib', {
-	entries: ['./main.js'],
-	outputFile: 'jquery.daterangepicker.js',
-	ignore: ['jquery', 'moment'].concat(disabledLocales).concat(disabledFeatures),
-	bundle: {
-		//standalone: 'daterangepicker'
+const buildConfigCore = {
+	disabledLocales: [
+		'az',
+		'cn',
+		'cz',
+		'de',
+		//'en',
+		'es',
+		'fr',
+		'hu',
+		'it',
+		'no',
+		'nl',
+		'pl',
+		'ru',
+		'se'
+	],
+	disabledFeatures: [
+		'all',
+		'jquery-plugin'
+	]
+}
+
+const makeJsTree = config => {
+	const disabledLocales = [];
+	const disabledFeatures = [];
+	for (let i = 0; i < config.disabledLocales.length; ++i) {
+		disabledLocales.push('./lib/locales/' + config.disabledLocales[i] + '.js');
 	}
-});
-js = TranspileJs(js);
-// copy jquery.daterangepicker.js to put it through uglify
-let minJs = Funnel(js, {
-	include: ['*'],
-	getDestinationPath: (path) => {
-		if (path === 'jquery.daterangepicker.js') {
-			return 'jquery.daterangepicker.min.js';
+	const featureModuleMap = {
+		'all': './lib/plugins.js',
+		'daytime-selection-controls': './lib/plugins/daytime-selection.js',
+		'shortcuts': './lib/plugins/shortcuts.js',
+		'week-numbers': './lib/plugins/week-numbers.js',
+		'days-tooltip': './lib/day-tooltip.js',
+		'jquery-plugin': './lib/plugins/jquery-plugin.js'
+	};
+	for (let i = 0; i < config.disabledFeatures.length; ++i) {
+		disabledFeatures.push(featureModuleMap[config.disabledFeatures[i]]);
+	}
+	return Browserify('lib', {
+		entries: ['./main.js'],
+		outputFile: 'jquery.daterangepicker.js',
+		ignore: ['jquery', 'moment'].concat(disabledLocales).concat(disabledFeatures),
+		bundle: {
+			//standalone: 'daterangepicker'
 		}
-		return path;
-	}
-});
-minJs = UglifyJS(minJs);
+	});
+}
 
-module.exports = new MergeTrees([js, minJs, css]);
+
+const makeTree = () => {
+	const css = new Sass(['sass'], 'styles.scss', 'daterangepicker.css');
+	let js = makeJsTree(buildConfig);
+	js = TranspileJs(js);
+	// copy jquery.daterangepicker.js to put it through uglify
+	let minJs = Funnel(js, {
+		include: ['*'],
+		getDestinationPath: (path) => {
+			if (path === 'jquery.daterangepicker.js') {
+				return 'jquery.daterangepicker.min.js';
+			}
+			return path;
+		}
+	});
+	minJs = UglifyJS(minJs);
+	return new MergeTrees([js, minJs, css]);
+}
+
+module.exports = makeTree();
