@@ -82,12 +82,9 @@
 		_overflow: hidden;
 		
 		table {
+			display: inline-table;
+			vertical-align: top;
 			width: 190px;
-			float: left;
-			&.month2 {
-				width: 190px;
-				float: left;
-			}
 			th, td {
 				vertical-align: middle;
 				text-align: center;
@@ -173,30 +170,38 @@
 		$zigzag-width: 15px;
 	
 		position: relative;
+		display: inline-block;
 		z-index: 1;
 		width: $zigzag-width;
 		height: 100%;
-		background-color: red;
 		font-size: 0;
 		line-height: 0;
-		float: left;
 		top: -5px;
 		margin: 0 10px -10px;
 		visibility: hidden;
-		height: 0;
 		
-		$half: $zigzag-width/2;
-		$zigzag: 'linear-gradient(135deg, #{$zigzag-color} 25%, transparent 25%) #{$half} 0px,\
-			linear-gradient(315deg, #{$zigzag-color} 25%, transparent 25%) -#{$half} -#{$half},\
-			linear-gradient(225deg, #{$zigzag-color} 25%, transparent 25%) -#{$half} #{$half},\
-			linear-gradient(45deg, #{$zigzag-color} 25%, transparent 25%) #{$half} 0px';
+		&:after {
+			content: '';
+			display: block;
+			margin: 0 auto;
+			width: $zigzag-width;
+			height: 100%;
+			background-color: red;
 		
-		background: unquote(str-replace($zigzag, 'linear-gradient', '-webkit-linear-gradient'));
-		background: unquote(str-replace($zigzag, 'linear-gradient', '-moz-linear-gradient'));
-		background: unquote(str-replace($zigzag, 'linear-gradient', '-ms-linear-gradient'));
-		background: unquote(str-replace($zigzag, 'linear-gradient', '-o-linear-gradient'));
-		background: unquote($zigzag);
-		background-size: $zigzag-width $zigzag-width;
+			$half: $zigzag-width/2;
+			$zigzag: 'linear-gradient(135deg, #{$zigzag-color} 25%, transparent 25%) #{$half} 0px,\
+				linear-gradient(315deg, #{$zigzag-color} 25%, transparent 25%) -#{$half} -#{$half},\
+				linear-gradient(225deg, #{$zigzag-color} 25%, transparent 25%) -#{$half} #{$half},\
+				linear-gradient(45deg, #{$zigzag-color} 25%, transparent 25%) #{$half} 0px';
+			
+			background: unquote(str-replace($zigzag, 'linear-gradient', '-webkit-linear-gradient'));
+			background: unquote(str-replace($zigzag, 'linear-gradient', '-moz-linear-gradient'));
+			background: unquote(str-replace($zigzag, 'linear-gradient', '-ms-linear-gradient'));
+			background: unquote(str-replace($zigzag, 'linear-gradient', '-o-linear-gradient'));
+			background: unquote($zigzag);
+			background-size: $zigzag-width $zigzag-width;
+			background-repeat-x: no-repeat;
+		}
 		
 		.gap-lines {
 			height: 100%;
