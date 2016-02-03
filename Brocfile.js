@@ -11,8 +11,8 @@ const buildConfig = {
 	// your build
 	disabledLocales: [
 		//'az',
-		//'cn',
-		//'cz',
+		//'zh-cn',
+		//'cs',
 		//'de',
 		//'en',
 		//'es',
@@ -31,6 +31,9 @@ const buildConfig = {
 		//'daytime-selection-controls', // 2.4kb
 		//'shortcuts',                  // 3kb
 		//'week-numbers',               // 1.7kb
+		//'custom-buttons',
+		//'directional-selection',
+		//'mousewheel-month-scroll',
 		//'days-tooltip',               // 1.9kb
 		//'jquery-plugin'
 	]
@@ -71,7 +74,10 @@ const makeJsTree = config => {
 		'shortcuts': './lib/plugins/shortcuts.js',
 		'week-numbers': './lib/plugins/week-numbers.js',
 		'days-tooltip': './lib/day-tooltip.js',
-		'jquery-plugin': './lib/plugins/jquery-plugin.js'
+		'jquery-plugin': './lib/plugins/jquery-plugin.js',
+		'custom-buttons': './lib/plugins/custom-buttons.js',
+		'directional-selection': './lib/plugins/directional-selection.js',
+		'mousewheel-month-scroll': './lib/plugins/mousewheel-month-scroll.js'
 	};
 	for (let i = 0; i < config.disabledFeatures.length; ++i) {
 		disabledFeatures.push(featureModuleMap[config.disabledFeatures[i]]);
