@@ -390,11 +390,11 @@
 			bottom: -4px;
 		}
 	}
-	&.two-months.no-gap {
-		.month1 .next, .month2 .prev {
-			display: none;
-		}
-		
+	&.two-months .illegal-prev .prev {
+		display: none;
+	}
+	&.two-months .illegal-next .next{
+		display: none;
 	}
 	.week-number {
 		padding: 5px 0;
