@@ -51,6 +51,7 @@ For a demo page, just open `demo/index.html` in your browser
 * [jquery-ui-daterangepicker](https://github.com/tamble/jquery-ui-daterangepicker): a daterange picker plugin for jquey-ui
 * [jquery.dateRangePicker](https://github.com/elohr/jquery.dateRangePicker) has a completely different concept for the ui which may work better for touch-devices
 * [yui's calendar widget](http://yuilibrary.com/yui/docs/calendar/calendar-multipane.html) supports basic date range selects (using shift key)
+* [lightRange](https://github.com/tommiehansen/lightRange) is a nice little widget specifically designed to be as lightweight as possible. Refer to [this disucssion](https://github.com/longbill/jquery-date-range-picker/issues/165) to see some of the author's motives.
 * [daterange picker on flights.google.com](https://www.google.de/flights/): Although not open source, it may serve as a good inspiration for what is considered *good usability*.
 
 There is also [this question on stackoverflow](https://stackoverflow.com/questions/1971208/looking-for-a-good-date-range-picker-any-suggestions), although it was closed as 'not constructive'.
