@@ -10,29 +10,29 @@ const buildConfig = {
 	// Uncomment locales from this list which you do not want to include in
 	// your build
 	disabledLocales: [
-		//'az',
-		//'zh-cn',
-		//'cs',
+		'az',
+		'zh-cn',
+		'cs',
 		//'de',
 		//'en',
-		//'es',
-		//'fr',
-		//'hu',
-		//'it',
-		//'no',
-		//'nl',
-		//'pl',
-		//'ru',
-		//'se'
+		'es',
+		'fr',
+		'hu',
+		'it',
+		'no',
+		'nl',
+		'pl',
+		'ru',
+		'se'
 	],
 	// Uncomment features to be disabled in your custom build
 	disabledFeatures: [
 		//'all',
-		//'daytime-selection-controls', // 2.4kb
-		//'shortcuts',                  // 3kb
-		//'week-numbers',               // 1.7kb
-		//'custom-buttons',
-		//'directional-selection',
+		'daytime-selection-controls', // 2.4kb
+		'shortcuts',                  // 3kb
+		'week-numbers',               // 1.7kb
+		'custom-buttons',
+		'directional-selection',
 		//'mousewheel-month-scroll',
 		//'days-tooltip',               // 1.9kb
 		//'jquery-plugin'
