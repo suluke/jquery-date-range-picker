@@ -1,107 +1,101 @@
-$(function() {
-	if (!window['console']) {
-		window.console = {};
-		window.console.log = function(){};
+var optionTypes = {
+	alwaysOpen: 'bool',
+	autoClose: 'bool',
+	batchMode: 'string',
+	beforeShowDay: 'function',
+	closeListeners: {
+		event: 'string',
+		target: 'dom',
+		filter: 'function'
+	},
+	container: 'dom',
+	customShortcuts: [
+		{
+			name: 'string',
+			dates: 'function'
+		}
+	],
+	customValues: [
+		{
+			value: 'string',
+			name: 'string'
+		}
+	],
+	dayDivAttrs: 'array',
+	dayTdAttrs: 'array',
+	defaultTime: 'date',
+	draggableRangeBounds: 'bool',
+	duration: 'int',
+	endDate: 'date',
+	extraClass: 'string',
+	format: 'string',
+	functions: 'object',
+	inline: 'bool',
+	language: 'string',
+	lookBehind: 'bool',
+	maxDays: 'int',
+	minDays: 'int',
+	openListeners: {
+		event: 'string',
+		target: 'dom',
+		filter: 'function'
+	},
+	preventDoubleClicks: 'bool',
+	scrollThroughMonths: {
+		enabled: 'bool'
+	},
+	selectForward: 'bool',
+	selectBackward: 'bool',
+	separator: 'string',
+	shortcuts: {
+		'prev-days': '[int]',
+		'next-days': '[int]',
+		prev: ['week','month','year'],
+		next: ['week','month','year']
+	},
+	showDateFilter: 'function',
+	showShortcuts: 'bool',
+	singleDate: 'bool',
+	singleMonth: 'bool',
+	startDate: 'date',
+	startOfWeek: ['monday', 'sunday'],
+	stickyMonths: 'bool',
+	swapTime: 'bool',
+	time: {
+		enabled: 'bool'
+	},
+	tooltip: {
+		enabled: 'bool',
+		getText: 'string|function'
+	},
+	topBar: {
+		applyBtnClass: 'string',
+		customText: 'string|function',
+		enabled: 'bool'
+	},
+	weekNumbers: {
+		enabled: 'bool',
+		getWeekName: 'function'
 	}
-	
-	$('a.show-option').click(function(evt) {
-		evt.preventDefault();
-		$(this).siblings('.config').slideToggle();
-	});
-		
-	/*
-	define a new language named "custom"
-	*/
-	$.dateRangePickerLanguages['custom'] = {
-		'selected': 'Selected:',
-		'days': 'Days',
-		'apply': 'Close',
-		'week-1' : 'Mon',
-		'week-2' : 'Tue',
-		'week-3' : 'Wed',
-		'week-4' : 'Thu',
-		'week-5' : 'Fri',
-		'week-6' : 'Sat',
-		'week-7' : 'Sun',
-		'month-name': ['January','February','March','April','May','June','July','August','September','October','November','December'],
-		'shortcuts' : 'Shortcuts',
-		'past': 'Past',
-		'7days' : '7days',
-		'14days' : '14days',
-		'30days' : '30days',
-		'previous' : 'Previous',
-		'prev-week' : 'Week',
-		'prev-month' : 'Month',
-		'prev-quarter' : 'Quarter',
-		'prev-year' : 'Year',
-		'less-than' : 'Date range should longer than %d days',
-		'more-than' : 'Date range should less than %d days',
-		'default-more' : 'Please select a date range longer than %d days',
-		'default-less' : 'Please select a date range less than %d days',
-		'default-range' : 'Please select a date range between %d and %d days',
-		'default-default': 'This is a custom language'
-	};
-	
-	$('.demo').each(function() {
-		var $this = $(this);
-		var options = {};
-		var optionsText = $this.find('.options').text();
-		try {
-			options = eval('(' + optionsText + ')');
-		} catch(e) {
-			console.log(optionsText);
-			console.error(e);
-		}
-		var $element = $this.children('.source');
-		$element.dateRangePicker(options);
-		var $codeContainer = $this.find('.config .code');
-		if ($codeContainer.length > 0) {
-			var code = $codeContainer.text();
-			eval(code);
-		}
-	});
-	
-	$('#date-range0')
-	.on('datepicker-first-date-selected', function(event, obj) {
-		/* This event will be triggered when first date is selected */
-		console.log('first-date-selected',obj);
-		// obj will be something like this:
-		// {
-		// 		date1: (Date object of the earlier date)
-		// }
-	})
-	.on('datepicker-change',function(event,obj) {
-		/* This event will be triggered when second date is selected */
-		console.log('change',obj);
-		// obj will be something like this:
-		// {
-		// 		date1: (Date object of the earlier date),
-		// 		date2: (Date object of the later date),
-		//	 	value: "2013-06-05 to 2013-06-07"
-		// }
-	})
-	.on('datepicker-apply',function(event,obj) {
-		/* This event will be triggered when user clicks on the apply button */
-		console.log('apply',obj);
-	})
-	.on('datepicker-close',function() {
-		/* This event will be triggered before date range picker close animation */
-		console.log('before close');
-	})
-	.on('datepicker-closed',function() {
-		/* This event will be triggered after date range picker close animation */
-		console.log('after close');
-	})
-	.on('datepicker-open',function() {
-		/* This event will be triggered before date range picker open animation */
-		console.log('before open');
-	})
-	.on('datepicker-opened',function() {
-		/* This event will be triggered after date range picker open animation */
-		console.log('after open');
-	});
+};
 
-	$('#date-range100').on('datepicker-apply',function(event,obj) {
-		console.log(obj);
-	});
-});
+var options = DateRangePicker.getDefaultOptions();
+
+// Validate
+for (key in options) {
+	if (!options.hasOwnProperty(key)) {
+		continue;
+	}
+	if (!optionTypes.hasOwnProperty(key)) {
+		console.warn('No type available for option "' + key + '".');
+		continue;
+	}
+}
+
+function createPicker() {
+	console.log('create picker');
+}
+
+$optionsForm = $('#options');
+ConfigFormBuilder(optionTypes, options, createPicker, $optionsForm);
+$optionsForm.children('button').first().appendTo($optionsForm);
