@@ -9,7 +9,7 @@ window.ConfigFormBuilder = function(schema, object, onChange, $container) {
 		$container = $('<form>');
 	}
 	var nt = normalizeType;
-	for (key in schema) {
+	for (var key in schema) {
 		if (!schema.hasOwnProperty(key)) {
 			continue;
 		}
@@ -44,7 +44,7 @@ window.ConfigFormBuilder = function(schema, object, onChange, $container) {
 			ConfigFormBuilder(schema[key], object[key], onChange, $elm);
 		} else {
 			console.warn('Cannot handle data type "' + schema[key] + '"');
-			continue;
+			$elm = $('<span>TODO</span>');
 		}
 		
 		$elm.data('change-object-key', key);
