@@ -21,8 +21,8 @@ var optionTypes = {
 			name: 'string'
 		}
 	],
-	dayDivAttrs: 'array',
-	dayTdAttrs: 'array',
+	dayDivAttrs: ['string'],
+	dayTdAttrs: ['string'],
 	defaultTime: 'date',
 	draggableRangeBounds: 'bool',
 	duration: 'int',
@@ -48,8 +48,8 @@ var optionTypes = {
 	selectBackward: 'bool',
 	separator: 'string',
 	shortcuts: {
-		'prev-days': '[int]',
-		'next-days': '[int]',
+		'prev-days': ['int'],
+		'next-days': ['int'],
 		prev: ['week','month','year'],
 		next: ['week','month','year']
 	},

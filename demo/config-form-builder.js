@@ -16,12 +16,26 @@ window.ConfigFormBuilder = function(schema, object, onChange, $container) {
 		var $elm = null;
 		if (nt(schema[key]) === nt('bool')) {
 			$elm = $('<input type="checkbox">');
+			
+		} else if (nt(schema[key]) === nt('string')) {
+			$elm = $('<input type="text">');
+		} else if (nt(schema[key]) === nt('dom')) {
+			$elm = $('<input type="text">');
+		} else if (nt(schema[key]) === nt('int')) {
+			$elm = $('<input type="text">');
+		} else if (nt(schema[key]) === nt('date')) {
+			$elm = $('<input type="text">');
+		} else if (nt(schema[key]) === nt('function')) {
+			$elm = $('<textarea>');
 		} else if (Array.isArray(schema[key]) && schema.length > 1) {
 			$elm = $('<select>');
 			for (var i = 0; i < schema[key].length; i++) {
 				var text = schema[key][i];
 				$elm.append($('<option value="' + text + '">' + text + '</option>'));
 			}
+		} else if (Array.isArray(schema[key])) {	
+			console.warn('TODO: Creating form elements for array-of-type creation not implemented yet');
+			continue;
 		} else if($.isPlainObject(schema[key])) {
 			$elm = $('<fieldset>');
 			if (!object[key]) {
