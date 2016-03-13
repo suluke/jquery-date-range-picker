@@ -9,7 +9,7 @@ Based on [jquery.date-range-picker](https://github.com/longbill/jquery-date-rang
 
 ## Features
 * **Runs everywhere:** Supports IE8+, Firefox, Chrome, Safari and other standard HTML5 browsers. Powered by [Babel](https://babeljs.io/)
-* **Fully international:** Built-in support for many languages - or just [add your own](lib/locales.js)!
+* **Fully international:** Built-in support for many languages - or just [add your own](lib/locales)!
 * **Styleable:** Fully CSS styled, using [SASS](http://sass-lang.com/) for development
 * **Customizable:** Just change the settings in `Brocfile.js` or `lib/config.js` to create a customized build.
 * **Easily hackable:** Code divided into [modules](http://browserify.org/), with quality ensured by [JSHint](http://jshint.com/about/) and [JSCS](http://jscs.info/) 
