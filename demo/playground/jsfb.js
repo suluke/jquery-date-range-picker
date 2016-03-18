@@ -1,4 +1,7 @@
-window.ConfigFormBuilder = function(schema, object, onChange, $container) {
+/**
+ * JSON Schema Form Builder (JSFB)
+ */
+window.JSFB = function(schema, object, onChange, $container) {
 	if (!object) {
 		object = {};
 	}
